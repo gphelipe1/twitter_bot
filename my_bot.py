@@ -3,6 +3,12 @@ import re
 from datetime import datetime
 import time
 
+#Todas as 4 variáveis abaixo são geradas e fornecidas após a criação da conta e do App em developer.twitter.com
+CONSUMER_KEY = 'consumer_key_hash'
+CONSUMER_SECRET = 'consumer_secret_hash'
+ACCESS_KEY = 'access_key_hash'
+ACCESS_SECRET = 'access_secret_hash'
+
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth, wait_on_rate_limit= True)
