@@ -1,0 +1,1 @@
+#Local para armazenar a lista dos últimos ID's
