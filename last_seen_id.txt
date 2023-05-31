@@ -1,1 +1,1 @@
-#Local para armazenar a lista dos últimos ID's
+# This file stores the list with all the already replied mentions.
