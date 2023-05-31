@@ -77,7 +77,7 @@ def store_last_seen(filename, last_seen_id):
 
 # Main Function
 def reply():
-    mentions = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode = 'extended') #Acess the feed with all mentions
+    mentions = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode = 'extended') # Access the feed with all mentions
     for mention in reversed(mentions): # Reversing the list order to get the old mentions first
         if "dia de hoje" in mention.full_text.lower(): # Check if there's the key-phrase in the mention
             
