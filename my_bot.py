@@ -77,11 +77,11 @@ def store_last_seen(filename, last_seen_id):
 
 # Main Function
 def reply():
-    mentions = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode = 'extended') #Acessa o feed das menções feitas
-    for mention in reversed(mentions): #Inverte a ordem da lista de menções para que publicações mais antigas sejam respondidas primeiro
-        if "dia de hoje" in mention.full_text.lower(): #Se existe a frase-gatilho
+    mentions = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode = 'extended') #Acess the feed with all mentions
+    for mention in reversed(mentions): # Reversing the list order to get the old mentions first
+        if "dia de hoje" in mention.full_text.lower(): # Check if there's the key-phrase in the mention
             
-            #Linhas 85 à 90 servem para a formatação do Reply
+            # Reply Format
             now = datetime.now()
             day = now.strftime("%d")
             weekday = weekday_in_pt( weekdays ,now.strftime("%A"))
@@ -89,11 +89,11 @@ def reply():
             year = now.strftime("%Y")
             data_de_hoje = ("Hoje é "+ weekday +", "+ day + " de " + month +" de "+ year)
 
-            print(str(mention.id) + ' - ' + mention.full_text) # Para fins de análise e verificação dos ID's
-            api.update_status("@" + mention.user.screen_name +" "+data_de_hoje, mention.id) #cria o reply
-            api.create_favorite(mention.id) #Favorita a menção feita
-            api.retweet(mention.id) #Retweet na menção feita
-            store_last_seen(FILE_NAME, mention.id) #Finalmente, salva o ID da ultima menção respondida, que será também ignorada
+            print(str(mention.id) + ' - ' + mention.full_text)
+            api.update_status("@" + mention.user.screen_name +" "+data_de_hoje, mention.id) # Creates the reply
+            api.create_favorite(mention.id) # Favs the mention
+            api.retweet(mention.id) # Retweet in the mentioned tweet
+            store_last_seen(FILE_NAME, mention.id) # Finally, saves the Id of the replied mention
 
 # Infinite Loop to Make a constant verification
 while True:
